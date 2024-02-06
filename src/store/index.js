@@ -5,7 +5,7 @@ import axios from 'axios';
 import logger from "redux-logger";
 
 import { rootReducer } from './root-reducer'
-import * as api from '../config';
+import * as endPoints from '../config';
 
 export const store = createStore(
     rootReducer,
@@ -13,7 +13,7 @@ export const store = createStore(
         applyMiddleware(
             thunk.withExtraArgument({
                 client: axios,
-                api
+                endPoints
             }),
             logger
         ),
