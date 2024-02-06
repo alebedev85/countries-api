@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
 
 import { Container } from './Container';
+import { useSelector, useDispatch } from 'react-redux';
+import { themeLight, themeDark } from '../store/theme/theme-actions'
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -35,27 +37,32 @@ const ModeSwitcher = styled.div`
 `;
 
 export const Header = () => {
-  const theme = 'light';
+  const dispatch = useDispatch();
+  const { theme } = useSelector(state => state.theme)
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
   }, [theme]);
+
+  function hendelThemeSwitcher() {
+    theme === 'light' ? dispatch(themeDark()) : dispatch(themeLight())
+  }
 
   return (
     <HeaderEl>
       <Container>
         <Wrapper>
           <Title>Where is the world?</Title>
-          <ModeSwitcher>
-            {theme === 'light' ? (
-              <IoMoonOutline size="14px" />
-            ) : (
-              <IoMoon size="14px" />
-            )}{' '}
-            <span style={{ marginLeft: '0.75rem' }}>{theme} Theme</span>
-          </ModeSwitcher>
-        </Wrapper>
-      </Container>
-    </HeaderEl>
+          <ModeSwitcher onClick={hendelThemeSwitcher}>
+          {theme === 'light' ? (
+            <IoMoonOutline size="14px" />
+          ) : (
+            <IoMoon size="14px" />
+          )}{' '}
+          <span style={{ marginLeft: '0.75rem' }}>{theme} Theme</span>
+        </ModeSwitcher>
+      </Wrapper>
+    </Container>
+    </HeaderEl >
   );
 };
