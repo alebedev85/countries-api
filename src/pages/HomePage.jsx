@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
-import { selectCountries, selectCountriesInfo } from '../store/countries/countries-selectors';
+import { selectCountries, selectCountriesInfo, selectFilteredCountries } from '../store/countries/countries-selectors';
+import { selectAllFilters } from '../store/filters/filters-selectors';
 import { loadCountries } from '../store/countries/countries-actions';
 
 export const HomePage = () => {
@@ -21,7 +22,8 @@ export const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty]);
 
-  const countries = useSelector(selectCountries);
+  const filters = useSelector(selectAllFilters);
+  const countries = useSelector(state => selectFilteredCountries(state, filters));
 
   return (
     <>

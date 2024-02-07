@@ -1,8 +1,8 @@
-import { SET_REGION, SET_COUNTRY_NAME } from './filters-actions';
+import { SET_REGION, SET_COUNTRY_NAME, RESET_FILTERS } from './filters-actions';
 
 const initialState = {
     region: '',
-    countryName: '',
+    name: '',
 }
 
 export const filtersReducer = (state = initialState, action) => {
@@ -16,8 +16,11 @@ export const filtersReducer = (state = initialState, action) => {
         case SET_COUNTRY_NAME: {
             return {
                 ...state,
-                countryName: action.payload
+                name: action.payload
             }
+        }
+        case RESET_FILTERS: {
+            return initialState
         }
         default: {
             return state;
