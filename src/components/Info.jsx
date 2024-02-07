@@ -100,7 +100,10 @@ export const Info = (props) => {
     languages = [],
     borders = [],
     push,
-  } = props;
+  } = props[0];
+
+  console.log(props[0]);
+
 
   return (
     <Wrapper>

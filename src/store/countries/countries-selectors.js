@@ -10,3 +10,5 @@ export const selectFilteredCountries = (state, filter) => state.countries.list.f
     c.name.toLowerCase().includes(filter.name.toLowerCase()) && c.region.includes(filter.region)
 
 )
+
+export const selectOneCountry = (state) => state.countries.country
