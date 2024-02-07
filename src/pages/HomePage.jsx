@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
-import { selectCountries, selectCountriesInfo, selectFilteredCountries } from '../store/countries/countries-selectors';
+import { selectCountriesInfo, selectFilteredCountries } from '../store/countries/countries-selectors';
 import { selectAllFilters } from '../store/filters/filters-selectors';
 import { loadCountries } from '../store/countries/countries-actions';
 
@@ -33,6 +33,7 @@ export const HomePage = () => {
       {status === 'loading' && <h2>Loading...</h2>}
 
       {status === 'received' && (
+        countries.length ? 
         <List>
           {countries.map((c) => {
             const countryInfo = {
@@ -62,7 +63,7 @@ export const HomePage = () => {
               />
             );
           })}
-        </List>
+        </List>: <h2>No countries found</h2>
       )}
     </>
   );
