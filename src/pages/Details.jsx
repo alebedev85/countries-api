@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadOneCountry, resetCountry } from '../store/countries/countries-actions';
-import { selectOneCountry, selectCountriesInfo } from '../store/countries/countries-selectors';
+import { loadCountryByName, resetCountry } from '../store/details/details-actions';
+import { selectDetailsStatus, selectCountryByName } from '../store/details/details-selectors';
 
 import { Button } from '../components/Button';
 import { Info } from '../components/Info';
@@ -14,22 +14,21 @@ export const Details = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { status, error } = useSelector(selectCountriesInfo)
+  const { status, error } = useSelector(selectDetailsStatus)
 
   useEffect(() => {
-    dispatch(loadOneCountry(name))
-  }, []);
+    dispatch(loadCountryByName(name))
+    return () => {
+      dispatch(resetCountry())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
 
-  const currentCountry = useSelector(selectOneCountry);
-
-  console.log(currentCountry);
+  const currentCountry = useSelector(selectCountryByName);
 
   return (
     <div>
-      <Button onClick={() => {
-        navigate(-1);
-        dispatch(resetCountry())
-      }}>
+      <Button onClick={() =>navigate(-1)}>
         <IoArrowBack /> Back
       </Button>
       {error && <h2>Can't fetch data</h2>}

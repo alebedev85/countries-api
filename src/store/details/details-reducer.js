@@ -1,17 +1,23 @@
-import { SET_COUNTRIES, SET_LOADING, SET_ERROR, SET_COUNTRY, RESET_COUNTRY } from './countries-actions';
+import { SET_LOADING, SET_ERROR, SET_COUNTRY, RESET_COUNTRY } from './details-actions';
 
 const initialState = {
     status: 'idle',
-    list: [],
+    details: null,
     error: null,
 }
 
-export const countriesReducer = (state = initialState, action) => {
+export const detailsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_COUNTRIES:
+        case SET_COUNTRY:
             return {
                 ...state,
-                list: action.payload,
+                details: action.payload,
+                status: 'received'
+            }
+        case RESET_COUNTRY:
+            return {
+                ...state,
+                details: null,
                 status: 'received'
             }
         case SET_LOADING:

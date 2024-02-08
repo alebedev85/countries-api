@@ -100,9 +100,9 @@ export const Info = (props) => {
     languages = [],
     borders = [],
     push,
-  } = props[0];
+  } = props;
 
-  console.log(props[0]);
+  // console.log(props);
 
 
   return (
@@ -156,7 +156,7 @@ export const Info = (props) => {
             <span>There is no border countries</span>
           ) : (
             <TagGroup>
-              {[].map((b) => (
+              {borders.map((b) => (
                 <Tag key={b} onClick={() => push(`/country/${b}`)}>
                   {b}
                 </Tag>
