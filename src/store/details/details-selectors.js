@@ -4,3 +4,4 @@ export const selectDetailsStatus = (state) => ({
 })
 
 export const selectCountryByName = (state) => state.details.details
+export const selectBordersCountries = (state) => state.details.borders

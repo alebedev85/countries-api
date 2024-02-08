@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCountryByName, resetCountry } from '../store/details/details-actions';
-import { selectDetailsStatus, selectCountryByName } from '../store/details/details-selectors';
+import { loadCountryByName, resetCountry, loadBordersCountries } from '../store/details/details-actions';
+import { selectDetailsStatus, selectCountryByName, selectBordersCountries } from '../store/details/details-selectors';
 
 import { Button } from '../components/Button';
 import { Info } from '../components/Info';
