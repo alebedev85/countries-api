@@ -5,7 +5,7 @@ import { IoMoon, IoMoonOutline } from 'react-icons/io5';
 
 import { Container } from './Container';
 import { useSelector, useDispatch } from 'react-redux';
-import { themeLight, themeDark } from '../store/slices/themeSlice'
+import { themeLight, themeDark, selectTheme } from '../store/slices/themeSlice'
 import { resetFilters } from '../store/slices/filtersSlice';
 
 const HeaderEl = styled.header`
@@ -39,7 +39,7 @@ const ModeSwitcher = styled.div`
 
 export const Header = () => {
   const dispatch = useDispatch();
-  const { theme } = useSelector(state => state.theme)
+  const { theme } = useSelector(selectTheme)
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);

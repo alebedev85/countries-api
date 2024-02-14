@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadBordersCountries } from '../store/details/details-actions';
-import { selectBordersCountries } from '../store/details/details-selectors';
+import { loadBordersCountries } from '../store/slices/detailsSlice';
+import { selectBordersCountries } from '../store/slices/detailsSlice';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -114,6 +114,7 @@ export const Info = (props) => {
   }, []);
 
   const newBorders = useSelector(selectBordersCountries)
+  console.log(newBorders);
 
   return (
     <Wrapper>

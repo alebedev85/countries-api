@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCountryByName, resetCountry } from '../store/details/details-actions';
-import { selectDetailsStatus, selectCountryByName } from '../store/details/details-selectors';
+import { loadCountryByName, resetCountry } from '../store/slices/detailsSlice';
+import { selectCountryByName } from '../store/slices/detailsSlice';
 
 import { Button } from '../components/Button';
 import { Info } from '../components/Info';
@@ -14,7 +14,7 @@ export const Details = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { status, error } = useSelector(selectDetailsStatus)
+  const { status, error } = useSelector(state => state.details)
 
   useEffect(() => {
     dispatch(loadCountryByName(name))

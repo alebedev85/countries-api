@@ -24,6 +24,6 @@ const filtersSlice = createSlice({
 
 export default filtersSlice.reducer
 export const { setRegion, setCountryName, resetFilters } = filtersSlice.actions;
-export const selectFiltersName = state => state.filters.name;
-export const selectFiltersRegion = state => state.filters.region;
-export const selectAllFilters = state => state.filters;
+export const selectFiltersName = (state) => state.filters.name;
+export const selectFiltersRegion = (state) => state.filters.region;
+export const selectAllFilters = (state) => state.filters;

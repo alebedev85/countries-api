@@ -13,10 +13,9 @@ export const loadCountries = createAsyncThunk(
     try {
       return api.get(endPoints.ALL_COUNTRIES)
     } catch {
-      return 'Failed to fetch all todos.'
+      return 'Failed to fetch all countries.'
     }
   }
-
 )
 
 const countriesSlice = createSlice({
@@ -43,7 +42,6 @@ const countriesSlice = createSlice({
 })
 
 export default countriesSlice.reducer;
-
 export const selectFilteredCountries = (state, filter) => state.countries.list.filter(c =>
   c.name.toLowerCase().includes(filter.name.toLowerCase()) && c.region.includes(filter.region)
 )
