@@ -5,34 +5,37 @@ import { useSelector, useDispatch } from 'react-redux';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
-import { selectCountriesInfo, selectFilteredCountries } from '../store/countries/countries-selectors';
-import { selectAllFilters } from '../store/filters/filters-selectors';
-import { loadCountries } from '../store/countries/countries-actions';
+// import { selectCountriesInfo, selectFilteredCountries } from '../store/countries/countries-selectors';
+// import { selectAllFilters } from '../store/filters/filters-selectors';
+// import { loadCountries } from '../store/countries/countries-actions';
 
 export const HomePage = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { status, error, qty } = useSelector(selectCountriesInfo)
+  // const { status, error, qty } = useSelector(selectCountriesInfo)
 
-  useEffect(() => {
-    if (!qty) {
-      dispatch(loadCountries())
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [qty]);
+  // useEffect(() => {
+  //   if (!qty) {
+  //     dispatch(loadCountries())
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [qty]);
 
-  const filters = useSelector(selectAllFilters);
-  const countries = useSelector(state => selectFilteredCountries(state, filters));
+  // const filters = useSelector(selectAllFilters);
+  // const countries = useSelector(state => selectFilteredCountries(state, filters));
+  const countries = []
 
   return (
     <>
       <Controls />
 
-      {error && <h2>Can't fetch data</h2>}
-      {status === 'loading' && <h2>Loading...</h2>}
+      {/* {error && <h2>Can't fetch data</h2>}
+      {status === 'loading' && <h2>Loading...</h2>} */}
 
-      {status === 'received' && (
+      {
+      // status === 'received' && 
+      (
         countries.length ? 
         <List>
           {countries.map((c) => {

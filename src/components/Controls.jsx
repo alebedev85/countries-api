@@ -30,8 +30,8 @@ const Wrapper = styled.div`
 
 export const Controls = () => {
   const dispatch = useDispatch();
-  const name = useSelector(selectFiltersName)
-  const region = useSelector(selectFiltersRegion)
+  // const name = useSelector(selectFiltersName)
+  // const region = useSelector(selectFiltersRegion)
 
   const handelSearch = (name) => {
     dispatch(setCountryName(name))
@@ -43,7 +43,7 @@ export const Controls = () => {
   return (
     <Wrapper>
       <Search
-        search={name}
+        // search={name}
         setSearch={handelSearch}
       />
       <CustomSelect
@@ -51,7 +51,7 @@ export const Controls = () => {
         placeholder="Filter by Region"
         isClearable
         isSearchable={false}
-        value={optionsMap[region]}
+        // value={optionsMap[region]}
         onChange={handelSetRegion}
       />
     </Wrapper>

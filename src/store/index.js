@@ -1,29 +1,25 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from '@redux-devtools/extension';
-import axios from 'axios';
+import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
+import * as api from '../config';
 
-import { rootReducer } from './root-reducer'
-import * as endPoints from '../config';
+import themeReducer from './slices/themeSlice';
+// import { countriesReducer } from './countries/countries-reducer';
+// import { filtersReducer } from './filters/filters-reducer';
+// import { detailsReducer } from './details/details-reducer';
 
-export const store = createStore(
-    rootReducer,
-    composeWithDevTools(
-        applyMiddleware(
-            thunk.withExtraArgument({
-                client: axios,
-                endPoints
-            }),
-            logger
-        ),
-    )
+export const store = configureStore({
+    reducer: {
+        theme: themeReducer,
+        // countries: countriesReducer,
+        // filters: filtersReducer,
+        // details: detailsReducer,
+    },
+    devTools: true,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        thunk: {
+            extraArgument: api
+        },
+        logger
+    })
+}
 )
-
-// export const store = createStore(
-//     rootReducer,
-//     applyMiddleware(
-//         thunk.withExtraArgument(),
-//         logger
-//         ),
-// )

@@ -5,7 +5,7 @@ import { IoMoon, IoMoonOutline } from 'react-icons/io5';
 
 import { Container } from './Container';
 import { useSelector, useDispatch } from 'react-redux';
-import { themeLight, themeDark } from '../store/theme/theme-actions'
+import { themeLight, themeDark } from '../store/slices/themeSlice'
 import { resetFilters } from '../store/filters/filters-actions';
 
 const HeaderEl = styled.header`
