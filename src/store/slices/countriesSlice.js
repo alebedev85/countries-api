@@ -43,3 +43,7 @@ const countriesSlice = createSlice({
 })
 
 export default countriesSlice.reducer;
+
+export const selectFilteredCountries = (state, filter) => state.countries.list.filter(c =>
+  c.name.toLowerCase().includes(filter.name.toLowerCase()) && c.region.includes(filter.region)
+)

@@ -5,15 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
-// import { selectCountriesInfo, selectFilteredCountries } from '../store/countries/countries-selectors';
-// import { selectAllFilters } from '../store/filters/filters-selectors';
+import { selectFilteredCountries } from '../store/slices/countriesSlice';
+import { selectAllFilters } from '../store/slices/filtersSlice';
 import { loadCountries } from '../store/slices/countriesSlice';
 
 export const HomePage = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const listCountries = useSelector(state => state.countries.list)
   const { status, error, qty } = useSelector(state => state.countries)
 
   useEffect(() => {
@@ -23,8 +22,8 @@ export const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty]);
 
-  // const filters = useSelector(selectAllFilters);
-  // const countries = useSelector(state => selectFilteredCountries(state, filters));
+  const filters = useSelector(selectAllFilters);
+  const listCountries = useSelector(state => selectFilteredCountries(state, filters));
 
   return (
     <>
@@ -32,7 +31,7 @@ export const HomePage = () => {
       {error && <h2>Can't fetch data</h2>}
       {status === 'loading' && <h2>Loading...</h2>}
       {status === 'received' && (
-        listCountries.length ? 
+        listCountries.length ?
         <List>
           {listCountries.map((c) => {
             const countryInfo = {

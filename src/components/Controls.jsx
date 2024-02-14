@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { setRegion, setCountryName } from '../store/slices/filtersSlice';
-// import { selectFiltersName, selectFiltersRegion } from '../store/filters/filters-selectors';
-
+import { setRegion, setCountryName, selectFiltersName, selectFiltersRegion} from '../store/slices/filtersSlice';
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
 
@@ -30,8 +27,8 @@ const Wrapper = styled.div`
 
 export const Controls = () => {
   const dispatch = useDispatch();
-  const name = useSelector(state => state.filters.name)
-  const region = useSelector(state => state.filters.region)
+  const name = useSelector(selectFiltersName)
+  const region = useSelector(selectFiltersRegion)
 
   const handelSearch = (name) => {
     dispatch(setCountryName(name))
