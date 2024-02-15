@@ -5,7 +5,7 @@ import Main from './components/Main';
 
 import HomePage from './pages/HomePage';
 import Details from './pages/Details';
-import NotFound from './pages/NotFound';
+// import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -14,11 +14,11 @@ function App() {
       <Header />
       <Main>
         <Routes>
-          <Route exact path="/" element={
+          <Route exact path="/countries-api" element={
             <HomePage />
           } />
           <Route path="/country/:name" element={<Details />} />
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Main>
     </>
