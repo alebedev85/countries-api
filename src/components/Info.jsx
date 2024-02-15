@@ -113,8 +113,7 @@ export default function Info (props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const newBorders = useSelector(selectBordersCountries)
-  console.log(newBorders);
+  const newBorders = useSelector(selectBordersCountries);
 
   return (
     <Wrapper>

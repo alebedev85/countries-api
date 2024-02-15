@@ -24,7 +24,6 @@ export const loadBordersCountries = createAsyncThunk(
   async (countries, { extra: endPoints }) => {
     try {
       return api.get(endPoints.filterByCode(countries))
-        .then(data => data.map(c => c.name))
     } catch {
       return 'Failed to fetch borders'
     }
@@ -46,7 +45,7 @@ const detailsSlice = createSlice({
         state.error = null;
       })
       .addCase(loadCountryByName.rejected, (state, action) => {
-        state.status = 'idle';
+        state.status = 'rejected';
         state.error = 'Something went wrong!';
       })
       .addCase(loadCountryByName.fulfilled, (state, action) => {
@@ -55,7 +54,7 @@ const detailsSlice = createSlice({
         state.details = action.payload[0];
       })
       .addCase(loadBordersCountries.fulfilled, (state, action) => {
-        state.borders = action.payload;
+        state.borders = action.payload.map(c => c.name);
       })
   }
 });
