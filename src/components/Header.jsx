@@ -37,7 +37,7 @@ const ModeSwitcher = styled.div`
   text-transform: capitalize;
 `;
 
-export const Header = () => {
+export default function Header () {
   const dispatch = useDispatch();
   const { theme } = useSelector(selectTheme)
 

@@ -90,7 +90,7 @@ const Tag = styled.span`
   cursor: pointer;
 `;
 
-export const Info = (props) => {
+export default function Info (props) {
   const {
     name,
     nativeName,

@@ -29,8 +29,8 @@ const countriesSlice = createSlice({
         state.error = null;
       })
       .addCase(loadCountries.rejected, (state, action) => {
-        state.status = 'idle';
-        state.error = 'Something went wrong!';
+        state.status = 'rejected';
+        state.error = action.meta.error;
       })
       .addCase(loadCountries.fulfilled, (state, action) => {
         state.error = null;

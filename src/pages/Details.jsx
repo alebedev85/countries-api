@@ -6,10 +6,10 @@ import { loadCountryByName, resetCountry } from '../store/slices/detailsSlice';
 import { selectCountryByName } from '../store/slices/detailsSlice';
 
 import { Button } from '../components/Button';
-import { Info } from '../components/Info';
+import Info from '../components/Info';
 
 
-export const Details = () => {
+export default function Details () {
   const { name } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();

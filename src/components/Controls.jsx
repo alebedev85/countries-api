@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Controls = () => {
+export default function Controls () {
   const dispatch = useDispatch();
   const name = useSelector(selectFiltersName)
   const region = useSelector(selectFiltersRegion)

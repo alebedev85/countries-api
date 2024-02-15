@@ -9,7 +9,7 @@ const Wrapper = styled.main`
   }
 `;
 
-export const Main = ({ children }) => {
+export default function Main ({ children }) {
   return (
     <Wrapper>
       <Container>{children}</Container>
