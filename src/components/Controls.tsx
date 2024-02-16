@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setRegion, setCountryName, selectFiltersName, selectFiltersRegion} from '../store/slices/filtersSlice';
+import { setRegion, setCountryName, selectFiltersName, selectFiltersRegion } from '../store/slices/filtersSlice';
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
 
@@ -11,6 +12,8 @@ const optionsMap = {
   'Europe': { value: 'Europe', label: 'Europe' },
   'Oceania': { value: 'Oceania', label: 'Oceania' },
 }
+
+type OptionTupe = typeof optionsMap
 const options = Object.values(optionsMap);
 
 const Wrapper = styled.div`
@@ -25,17 +28,21 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Controls () {
+function getOption(key: keyof OptionTupe) {
+  return optionsMap[key]
+}
+
+export default function Controls() {
   const dispatch = useDispatch();
   const name = useSelector(selectFiltersName)
-  const region = useSelector(selectFiltersRegion)
+  const region = useSelector(selectFiltersRegion) || ''
 
-  const handelSearch = (name) => {
+  const handelSearch = (name: string) => {
     dispatch(setCountryName(name))
   }
 
-  const handelSetRegion = (e) => {
-    dispatch(setRegion(e?.value || ''))
+  const handelSetRegion = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setRegion(e.target.value || ''))
   }
   return (
     <Wrapper>
@@ -48,8 +55,8 @@ export default function Controls () {
         placeholder="Filter by Region"
         isClearable
         isSearchable={false}
-        value={optionsMap[region]}
-        onChange={handelSetRegion}
+        value={getOption(region)}
+        onChange={() => handelSetRegion}
       />
     </Wrapper>
   );
