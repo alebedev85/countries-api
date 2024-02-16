@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { CountryDataType } from "../Types";
 import { api } from "../../api"
 
 const initialState = {
@@ -24,7 +25,7 @@ const countriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadCountries.pending, (state, action) => {
+      .addCase(loadCountries.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })

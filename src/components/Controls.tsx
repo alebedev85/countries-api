@@ -1,20 +1,12 @@
 import styled from 'styled-components';
-import { ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setRegion, setCountryName, selectFiltersName, selectFiltersRegion } from '../store/slices/filtersSlice';
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
+import RegionOptionData from '../data/RegionOptionData';
+import { RegionOptionKeyType } from '../store/Types';
 
-const optionsMap = {
-  'Africa': { value: 'Africa', label: 'Africa' },
-  'America': { value: 'America', label: 'America' },
-  'Asia': { value: 'Asia', label: 'Asia' },
-  'Europe': { value: 'Europe', label: 'Europe' },
-  'Oceania': { value: 'Oceania', label: 'Oceania' },
-}
-
-type OptionTupe = typeof optionsMap
-const options = Object.values(optionsMap);
+const options = Object.values(RegionOptionData);
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,21 +20,23 @@ const Wrapper = styled.div`
   }
 `;
 
-function getOption(key: keyof OptionTupe) {
-  return optionsMap[key]
+function getOption(key: RegionOptionKeyType) {
+  if (key) {
+    return RegionOptionData[key]
+  }
 }
 
 export default function Controls() {
   const dispatch = useDispatch();
   const name = useSelector(selectFiltersName)
-  const region = useSelector(selectFiltersRegion) || ''
+  const region = useSelector(selectFiltersRegion)
 
   const handelSearch = (name: string) => {
     dispatch(setCountryName(name))
   }
 
-  const handelSetRegion = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setRegion(e.target.value || ''))
+  const handelSetRegion = (value: RegionOptionKeyType) => {
+    dispatch(setRegion(value))
   }
   return (
     <Wrapper>

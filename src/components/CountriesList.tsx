@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import List from '../components/List';
-import Card from '../components/Card';
+import { useAppSelector as useSelector} from '../store';
+import { useAppDispatch as useDispatch} from '../store';
+import { CountryDataType } from '../store/Types';
+import List from './List';
+import Card from './Card';
 
 import { selectFilteredCountries } from '../store/slices/countriesSlice';
 import { selectAllFilters } from '../store/slices/filtersSlice';
@@ -12,14 +14,14 @@ export default function CountriesList() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { status, error, qty } = useSelector(state => state.countries)
+  const { status, error, list } = useSelector(state => state.countries)
 
   useEffect(() => {
-    if (!qty) {
+    if (!list.length) {
       dispatch(loadCountries())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [qty]);
+  }, [list.length]);
 
   const filters = useSelector(selectAllFilters);
   const listCountries = useSelector(state => selectFilteredCountries(state, filters));
@@ -31,7 +33,7 @@ export default function CountriesList() {
       {status === 'received' && (
         listCountries.length ?
           <List>
-            {listCountries.map((c) => {
+            {listCountries.map((c: CountryDataType) => {
               const countryInfo = {
                 img: c.flags.png,
                 name: c.name,

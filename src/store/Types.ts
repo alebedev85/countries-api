@@ -1,3 +1,5 @@
+import RegionOptionData from "../data/RegionOptionData";
+
 export type CountryDataType = {
   name: string,
   topLevelDomain: string[];
@@ -65,3 +67,6 @@ export type CountryDataType = {
   cioc: string,
   independent: boolean
 }
+
+type RegionOptionType = typeof RegionOptionData
+export type RegionOptionKeyType = keyof RegionOptionType
