@@ -49,6 +49,7 @@ const detailsSlice = createSlice({
         state.error = 'Something went wrong!';
       })
       .addCase(loadCountryByName.fulfilled, (state, action) => {
+        console.log(action.payload[0])
         state.error = null;
         state.status = 'received';
         state.details = action.payload[0];
