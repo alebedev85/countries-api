@@ -1,8 +1,18 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "..";
+import { FiltersType } from "./filtersSlice";
 import { CountryDataType } from "../Types";
+import * as endPoints from '../../config';
 import { api } from "../../api"
 
-const initialState = {
+type initialStateType = {
+  status: string,
+  list: CountryDataType[],
+  error: string | null,
+}
+
+
+const initialState: initialStateType = {
   status: 'idle',
   list: [],
   error: null,
@@ -10,7 +20,7 @@ const initialState = {
 
 export const loadCountries = createAsyncThunk(
   '@@countries/load-all',
-  async (_, { extra: endPoints }) => {
+  async () => {
     try {
       return api.get(endPoints.ALL_COUNTRIES)
     } catch {
@@ -29,11 +39,11 @@ const countriesSlice = createSlice({
         state.status = 'loading';
         state.error = null;
       })
-      .addCase(loadCountries.rejected, (state, action) => {
+      .addCase(loadCountries.rejected, (state) => {
         state.status = 'rejected';
-        state.error = action.meta.error;
+        state.error = 'Faild to load countries';
       })
-      .addCase(loadCountries.fulfilled, (state, action) => {
+      .addCase(loadCountries.fulfilled, (state, action: PayloadAction<CountryDataType[]>) => {
         state.error = null;
         state.status = 'received';
         state.list = action.payload;
@@ -43,6 +53,6 @@ const countriesSlice = createSlice({
 })
 
 export default countriesSlice.reducer;
-export const selectFilteredCountries = (state, filter) => state.countries.list.filter(c =>
+export const selectFilteredCountries = (state: RootState, filter: FiltersType) => state.countries.list.filter(c =>
   c.name.toLowerCase().includes(filter.name.toLowerCase()) && c.region.includes(filter.region)
 )

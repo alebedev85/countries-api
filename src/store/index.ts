@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logger from "redux-logger";
-import * as endPoints from '../config';
+// import * as endPoints from '../config';
 
 import themeReducer from './slices/themeSlice';
 import countriesReducer from './slices/countriesSlice';
@@ -16,11 +16,7 @@ const store = configureStore({
     details: detailsReducer,
   },
   devTools: true,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    thunk: {
-      extraArgument: endPoints
-    }
-  }).concat(logger)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 }
 )
 

@@ -3,12 +3,12 @@ import { RootState } from "..";
 import { RegionOptionKeyType } from "../Types";
 
 
-type initialStateType = {
+export type FiltersType = {
   region: RegionOptionKeyType,
   name: string,
 }
 
-const initialState: initialStateType = {
+const initialState: FiltersType = {
   region:'',
   name: '',
 }
