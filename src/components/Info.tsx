@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadBordersCountries } from '../store/slices/detailsSlice';
 import { selectBordersCountries } from '../store/slices/detailsSlice';
+import { NavigateFunction } from 'react-router-dom';
+import { CountryDataType } from '../store/Types';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -90,7 +92,12 @@ const Tag = styled.span`
   cursor: pointer;
 `;
 
-export default function Info (props) {
+type InfoType = {
+  push: NavigateFunction;
+  countryInfo: CountryDataType;
+}
+
+export default function Info({ push, countryInfo }: InfoType) {
   const {
     name,
     nativeName,
@@ -103,8 +110,7 @@ export default function Info (props) {
     currencies = [],
     languages = [],
     borders = [],
-    push,
-  } = props;
+  } = countryInfo;
 
   const dispatch = useDispatch();
 
