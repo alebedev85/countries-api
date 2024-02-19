@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
-
 import { Container } from './Container';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector as useSelector } from '../store';
+import { useAppDispatch as useDispatch } from '../store';
 import { themeLight, themeDark, selectTheme } from '../store/slices/themeSlice'
 import { resetFilters } from '../store/slices/filtersSlice';
 

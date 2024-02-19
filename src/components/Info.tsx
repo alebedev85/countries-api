@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector as useSelector } from '../store';
+import { useAppDispatch as useDispatch } from '../store';
 import { loadBordersCountries } from '../store/slices/detailsSlice';
 import { selectBordersCountries } from '../store/slices/detailsSlice';
 import { NavigateFunction } from 'react-router-dom';

@@ -43,7 +43,18 @@ const CardListItem = styled.li`
   }
 `;
 
-export default function Card ({ img, name, info = [], onClick }) {
+type CardPropsType = {
+  img: string,
+  name: string,
+  info:
+  {
+    title: string,
+    description: string
+  }[]
+  onClick: () => void
+}
+
+export default function Card({ img, name, info = [], onClick }: CardPropsType) {
   return (
     <Wrapper onClick={onClick}>
       <CardImage src={img} alt={name} />

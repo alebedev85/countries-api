@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from 'react';
 
 const Wrapper = styled.section`
   width: 100%;
@@ -21,6 +22,6 @@ const Wrapper = styled.section`
   }
 `;
 
-export default function List  ({ children }) {
+export default function List  ({ children }: {children:React.ReactNode}) {
   return <Wrapper>{children}</Wrapper>;
 };

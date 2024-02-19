@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppSelector as useSelector} from '../store';
-import { useAppDispatch as useDispatch} from '../store';
+import { useAppSelector as useSelector } from '../store';
+import { useAppDispatch as useDispatch } from '../store';
 import { CountryDataType } from '../store/Types';
 import List from './List';
 import Card from './Card';
